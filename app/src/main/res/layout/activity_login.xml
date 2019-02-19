@@ -7,6 +7,7 @@
     tools:context=".LoginActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -38,33 +39,32 @@
         android:layout_marginTop="8dp"
 
         android:layout_marginBottom="8dp"
-        android:hint="enter Email Id.."
+        android:hint="Enter Email Id.."
         app:layout_constraintBottom_toTopOf="@+id/loginPasswordId"
         app:layout_constraintTop_toBottomOf="@+id/loginSpinnerId"
-        app:layout_constraintVertical_bias="0.529"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.583"
+        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/loginPasswordId"
         android:layout_width="match_parent"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="60dp"
-        android:hint="enter Password.."
-        app:layout_constraintBottom_toTopOf="@+id/loginForgotPasswordId"
+        android:layout_marginBottom="36dp"
+        android:hint="Enter Password.."
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/registrationEmailId"
-        app:layout_constraintVertical_bias="0.031"
         tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/loginForgotPasswordId"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="forgot Password ?"
+        android:layout_height="28dp"
+        android:layout_marginBottom="32dp"
+        android:text="Forgot Password?"
         app:layout_constraintBottom_toTopOf="@+id/loginLoggedInId"
-        tools:layout_editor_absoluteX="122dp" />
-
+        tools:layout_editor_absoluteX="139dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/loginLoggedInId"
@@ -72,5 +72,6 @@
         android:layout_height="wrap_content"
         android:text="Login"
         tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="408dp" />
+        tools:layout_editor_absoluteY="433dp"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>

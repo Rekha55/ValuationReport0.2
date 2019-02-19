@@ -12,9 +12,9 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Spinner dropdown = findViewById(R.id.registrationSpinnerId);
-        String[] items = new String[]{"Client", "Employee", "Admin"};
+        Spinner dropdownRegistration = findViewById(R.id.registrationSpinnerId);
+        String[] items = new String[]{"Client", "Employee"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
+        dropdownRegistration.setAdapter(adapter);
     }
 }
