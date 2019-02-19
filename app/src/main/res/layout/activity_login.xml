@@ -42,29 +42,29 @@
         android:hint="Enter Email Id.."
         app:layout_constraintBottom_toTopOf="@+id/loginPasswordId"
         app:layout_constraintTop_toBottomOf="@+id/loginSpinnerId"
-        app:layout_constraintVertical_bias="0.583"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintVertical_bias="0.566"
+        tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/loginPasswordId"
         android:layout_width="match_parent"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:hint="Enter Password.."
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/registrationForgotPasswordId"
         app:layout_constraintTop_toBottomOf="@+id/registrationEmailId"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/registrationForgotPasswordId"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="88dp"
         android:text="Forgot Password?"
         app:layout_constraintBottom_toTopOf="@+id/loginLoggedInId"
-        tools:layout_editor_absoluteX="139dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="148dp" />
 
     <Button
         android:id="@+id/loginLoggedInId"
@@ -74,4 +74,17 @@
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="433dp"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/registrationRegisterId"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Register?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginLoggedInId"
+        app:layout_constraintVertical_bias="0.182"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="176dp" />
 </android.support.constraint.ConstraintLayout>

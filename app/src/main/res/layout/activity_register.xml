@@ -5,16 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registration">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Registration Form"
-    android:textSize="30dp"
-    android:textAlignment="center"
-    android:padding="13dp"
-    android:textColor="#ffff"
-    android:background="#595959"
-    tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:background="#595959"
+        android:padding="13dp"
+        android:text="Registration Form"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/registrationSpinnerId"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Spinner
         android:id="@+id/registrationSpinnerId"
@@ -103,11 +107,14 @@
         android:id="@+id/registrationSubmitId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dp"
         android:text="submit"
-        android:layout_marginTop="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registrationCompanyCodeId"
-        tools:layout_editor_absoluteX="161dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="161dp" />
 
 
 

@@ -17,5 +17,5 @@ public class LoginActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdownLogin.setAdapter(adapter);
     }
-    //check
+
 }
