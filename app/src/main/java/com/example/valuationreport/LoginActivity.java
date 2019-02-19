@@ -8,14 +8,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class LoginActivity extends AppCompatActivity {
+import com.google.firebase.analytics.FirebaseAnalytics;
 
+public class LoginActivity extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
     Button loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this); //firebase analytics
 
         id();       //function containing id's for all elements
 
