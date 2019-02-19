@@ -10,7 +10,8 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:background="#595959"
         android:padding="13dp"
         android:text="Login Form"
@@ -18,6 +19,8 @@
         android:textColor="#ffff"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/loginSpinnerId"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -60,33 +63,48 @@
         android:id="@+id/registrationForgotPasswordId"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="52dp"
         android:text="Forgot Password?"
         app:layout_constraintBottom_toTopOf="@+id/loginLoggedInId"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="148dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/loginLoggedInId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:onClick="OnLoginButtonClick"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="433dp"
-        tools:ignore="MissingConstraints" />
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="433dp" />
 
     <TextView
         android:id="@+id/registrationRegisterId"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Register?"
         android:onClick="OnRegisterTextClick"
+        android:text="Register?"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginLoggedInId"
         app:layout_constraintVertical_bias="0.182"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="176dp" />
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>

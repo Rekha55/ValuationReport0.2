@@ -1,7 +1,9 @@
 package com.example.valuationreport;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -17,4 +19,10 @@ public class Registration extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdownRegistration.setAdapter(adapter);
     }
+
+    public void OnRegisterButtonClick(View view){
+        startActivity(new Intent(Registration.this,LoginActivity.class));
+    }
+
+
 }
