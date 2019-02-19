@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Registration Form"
+    android:textSize="30dp"
+    android:textAlignment="center"
+    android:padding="13dp"
+    android:textColor="#ffff"
+    android:background="#595959"
+    tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/registrationSpinnerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="102dp"></Spinner>
+
+    <EditText
+        android:id="@+id/registrationNameId"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="enter Name.."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationSpinnerId"
+        app:layout_constraintVertical_bias="0.047"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/registrationEmailId"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginBottom="8dp"
+        android:hint="enter Email Id.."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationNameId"
+        app:layout_constraintVertical_bias="0.027"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/registrationPasswordId"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="enter Password.."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationEmailId"
+        app:layout_constraintVertical_bias="0.031"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/registrationMobileId"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="enter Mobile No. .."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationPasswordId"
+        app:layout_constraintVertical_bias="0.04"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/registrationAddressId"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="enter Address..."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationMobileId"
+        app:layout_constraintVertical_bias="0.044"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/registrationCompanyCodeId"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="enter Company Code .."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registrationAddressId"
+        app:layout_constraintVertical_bias="0.06"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/RegistrationSubmitId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/registrationCompanyCodeId"
+        tools:layout_editor_absoluteX="161dp" />
+
+
+
+</android.support.constraint.ConstraintLayout>
