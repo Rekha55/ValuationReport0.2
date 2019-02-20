@@ -31,7 +31,7 @@
         android:id="@+id/registrationSpinnerId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="12dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -111,7 +111,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:inputType="number"
-        android:visibility="invisible"
+
         android:hint="Enter Company Code .."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registrationAddressId"
@@ -132,10 +132,23 @@
         android:text="submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registrationCompanyCodeId"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/registrationShowId"
+        android:text="display"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="84dp" />
 
 </android.support.constraint.ConstraintLayout>
 
