@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -30,7 +31,7 @@ import java.util.Map;
 public class Registration extends AppCompatActivity {
 
     private FirebaseFirestore db;
-
+    private FirebaseAuth mAuth;
     EditText nameEditText, emailEditText, passwordEditText, mobileEditText, addressEditText;
     EditText companyCodeEditText;
     Spinner dropdownRegistration;
@@ -41,7 +42,7 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        mAuth = FirebaseAuth.getInstance();
 
         typeCast();  //id's of all the element
 
@@ -49,6 +50,7 @@ public class Registration extends AppCompatActivity {
 
         getDataFromFirebase();
     }
+
 
     public void getDataFromFirebase() {
         try {
@@ -75,6 +77,7 @@ public class Registration extends AppCompatActivity {
                     }
                 });
     }
+
     public void setSpinner() {
 
         dropdownRegistration = findViewById(R.id.registrationSpinnerId);
@@ -94,7 +97,7 @@ public class Registration extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                    //this is implemented as without this error occurs.
+                //this is implemented as without this error occurs.
             }
         });
     }
@@ -120,14 +123,16 @@ public class Registration extends AppCompatActivity {
 
         if (dropdownRegistration.getSelectedItem() == "Client") {
             companyCode = companyCodeEditText.getText().toString();
-        } else if(dropdownRegistration.getSelectedItem() == "Employee"){
-            companyCode=setCompanyCode();
+        } else if (dropdownRegistration.getSelectedItem() == "Employee") {
+            companyCode = setCompanyCode();
         }
         Toast.makeText(getApplicationContext(), companyCodeEditText.getText().toString() + "", Toast.LENGTH_SHORT).show();   //for checking company code input
 
 
         if (!hasValidationErrors(name, email, password, mobileNo, address)) {
-            boolean auth=false;
+
+
+            boolean auth = false;
 
             Map<String, Object> user = new HashMap<>();
             user.put("name", name);
@@ -142,47 +147,24 @@ public class Registration extends AppCompatActivity {
             db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(getApplicationContext(), documentReference.getId()+ "----->" , Toast.LENGTH_SHORT).show();   //for checking company code input
+                    Toast.makeText(getApplicationContext(), documentReference.getId() + "----->", Toast.LENGTH_SHORT).show();   //for checking company code input
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "error found" , Toast.LENGTH_SHORT).show();   //for checking company code input
+                    Toast.makeText(getApplicationContext(), "error found", Toast.LENGTH_SHORT).show();   //for checking company code input
                 }
             });
-            final Intent iRegisterButton = new Intent(Registration.this,LoginActivity.class);
+            final Intent iRegisterButton = new Intent(Registration.this, LoginActivity.class);
             startActivity(iRegisterButton);
+        } else {
+            Toast.makeText(getApplicationContext(), "Inputs are not Valid", Toast.LENGTH_SHORT).show();   //for checking company code input
         }
 
-    }
-    public class User {
-        private String username;
-        private HashMap<String, Boolean> privacy;
-
-        public User() {}
-
-        public User(String username, HashMap<String, Boolean> privacy) {
-            this.username = username;
-            this.privacy = privacy;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-
-
-        public void setPrivacy(HashMap<String, Boolean> privacy) {
-            this.privacy = privacy;
-        }
 
     }
 
-    public String setCompanyCode(){
+    public String setCompanyCode() {
         companyCodeEditText.addTextChangedListener(new TextWatcher() {  //necessary to implement all the methoda of TextWatcher
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -203,26 +185,26 @@ public class Registration extends AppCompatActivity {
     }
 
     private boolean hasValidationErrors(String name, String email, String password, String mobile, String address) {
-        if (name.isEmpty()) {
+        if (name.isEmpty() && !name.matches("^[\\p{L} .'-]+$")) {
             nameEditText.setError("Name required");
             nameEditText.requestFocus();
             return true;
         }
 
-        if (email.isEmpty()) {
-            emailEditText.setError("Email required");
+        if (email.isEmpty() && !email.matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
+            emailEditText.setError("xyz@gmail.com");
             emailEditText.requestFocus();
             return true;
         }
 
-        if (password.isEmpty()) {
-            passwordEditText.setError("Password required");
+        if (password.isEmpty() && !password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$") && password.length() < 8) {
+            passwordEditText.setError("Password required with alteast 1number ,one capital letter and 1 alphanumeric letter");
             passwordEditText.requestFocus();
             return true;
         }
 
-        if (mobile.isEmpty()) {
-            mobileEditText.setError("Mobile No. required");
+        if (mobile.isEmpty() && !mobileNo.matches("^[0-9]{10}")) {
+            mobileEditText.setError("please enter 10 number");
             mobileEditText.requestFocus();
             return true;
         }
@@ -235,5 +217,33 @@ public class Registration extends AppCompatActivity {
 
         return false;
     }
+
+    public class User {
+        private String username;
+        private HashMap<String, Boolean> privacy;
+
+        public User() {
+        }
+
+        public User(String username, HashMap<String, Boolean> privacy) {
+            this.username = username;
+            this.privacy = privacy;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+
+        public void setPrivacy(HashMap<String, Boolean> privacy) {
+            this.privacy = privacy;
+        }
+
+    }
+
 
 }
