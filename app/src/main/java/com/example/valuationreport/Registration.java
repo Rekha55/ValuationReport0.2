@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +30,7 @@ import java.util.Map;
 public class Registration extends AppCompatActivity {
 
     private FirebaseFirestore db;
-    TextView showTextView;
+
     EditText nameEditText, emailEditText, passwordEditText, mobileEditText, addressEditText;
     EditText companyCodeEditText;
     Spinner dropdownRegistration;
@@ -43,17 +42,23 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
+        typeCast();  //id's of all the element
+
+        setSpinner();  //setting the value of the spinner and applying condition for company code for client
+
+        getDataFromFirebase();
+    }
+
+    public void getDataFromFirebase() {
         try {
-            FirebaseApp.initializeApp(this);                    //initialize firebase
+            FirebaseApp.initializeApp(this);    //initialize firebase
             db = FirebaseFirestore.getInstance();  //firestore object
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Probleem in Object--------------->" + e.getMessage(), Toast.LENGTH_LONG).show();
             Log.d("FIRESTORE", e.getMessage());
         }
 
-        id();  //id's of all the element
-
-        setSpinner();  //setting the value of the spinner and applying condition for company code for client
 
         db.collection("users")
                 .get()
@@ -70,7 +75,6 @@ public class Registration extends AppCompatActivity {
                     }
                 });
     }
-
     public void setSpinner() {
 
         dropdownRegistration = findViewById(R.id.registrationSpinnerId);
@@ -95,8 +99,8 @@ public class Registration extends AppCompatActivity {
         });
     }
 
-    public void id() {
-        showTextView = findViewById(R.id.registrationShowId);
+    public void typeCast() {
+
         nameEditText = findViewById(R.id.registrationNameId);
         emailEditText = findViewById(R.id.registrationEmailId);
         passwordEditText = findViewById(R.id.registrationPasswordId);
