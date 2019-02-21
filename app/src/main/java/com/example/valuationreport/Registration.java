@@ -1,9 +1,9 @@
 package com.example.valuationreport;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,13 +20,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -99,13 +96,13 @@ public class Registration extends AppCompatActivity {
     }
 
     public void id() {
-        showTextView=(TextView)findViewById(R.id.registrationShowId) ;
-        nameEditText = (EditText) findViewById(R.id.registrationNameId);
-        emailEditText = (EditText) findViewById(R.id.registrationEmailId);
-        passwordEditText = (EditText) findViewById(R.id.registrationPasswordId);
-        mobileEditText = (EditText) findViewById(R.id.registrationMobileId);
-        addressEditText = (EditText) findViewById(R.id.registrationAddressId);
-        companyCodeEditText = (EditText) findViewById(R.id.registrationCompanyCodeId);
+        showTextView = findViewById(R.id.registrationShowId);
+        nameEditText = findViewById(R.id.registrationNameId);
+        emailEditText = findViewById(R.id.registrationEmailId);
+        passwordEditText = findViewById(R.id.registrationPasswordId);
+        mobileEditText = findViewById(R.id.registrationMobileId);
+        addressEditText = findViewById(R.id.registrationAddressId);
+        companyCodeEditText = findViewById(R.id.registrationCompanyCodeId);
     }
 
 
@@ -135,8 +132,8 @@ public class Registration extends AppCompatActivity {
             user.put("mobileNo", mobileNo);
             user.put("address", address);
             user.put("companyCode", companyCode);
-            user.put("user",dropdownRegistration.getSelectedItem());
-            user.put("Authenticate",auth);
+            user.put("user", dropdownRegistration.getSelectedItem());    //display whether client or employee
+            user.put("Authenticate", auth);          //false until admin approval
 
             db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
