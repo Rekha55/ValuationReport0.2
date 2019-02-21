@@ -40,7 +40,6 @@ public class Registration extends AppCompatActivity {
     Spinner dropdownRegistration;
     String[] items;                          //for spinner items
     String name, email, password, address, mobileNo, companyCode;               //for getting and setting input from/to the user
-    int dummyvalue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,7 @@ public class Registration extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                    //this is implemented as without this error occurs.
             }
         });
     }
@@ -127,6 +126,7 @@ public class Registration extends AppCompatActivity {
 
 
         if (!hasValidationErrors(name, email, password, mobileNo, address)) {
+            boolean auth=false;
 
             Map<String, Object> user = new HashMap<>();
             user.put("name", name);
@@ -135,9 +135,22 @@ public class Registration extends AppCompatActivity {
             user.put("mobileNo", mobileNo);
             user.put("address", address);
             user.put("companyCode", companyCode);
-            // Add a new document with a generated ID
+            user.put("user",dropdownRegistration.getSelectedItem());
+            user.put("Authenticate",auth);
 
-
+            db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Toast.makeText(getApplicationContext(), documentReference.getId()+ "----->" , Toast.LENGTH_SHORT).show();   //for checking company code input
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "error found" , Toast.LENGTH_SHORT).show();   //for checking company code input
+                }
+            });
+            final Intent iRegisterButton = new Intent(Registration.this,LoginActivity.class);
+            startActivity(iRegisterButton);
         }
 
     }
@@ -221,8 +234,5 @@ public class Registration extends AppCompatActivity {
 
         return false;
     }
-
-
-
 
 }
