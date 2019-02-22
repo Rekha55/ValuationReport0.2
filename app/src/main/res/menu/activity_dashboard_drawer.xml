@@ -4,36 +4,31 @@
     tools:showIn="navigation_view">
 
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        >
         <item
             android:id="@+id/authId"
-            android:icon="@drawable/auth"
+
             android:title="Authentication" />
         <item
             android:id="@+id/ctbId"
-            android:icon="@drawable/moneybag"
-            android:title="Cost_to_the_bidder" />
+            android:title="cost" />
 
         <item
             android:id="@+id/matrixId"
-            android:icon="@drawable/matrix"
             android:title="Matrix" />
         <item
             android:id="@+id/userProfileId"
-            android:icon="@drawable/userp"
-            android:title="User Profile" />
+             android:title="User Profile" />
 
         <item
             android:id="@+id/settingsId"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+             android:title="Settings" />
         <item
             android:id="@+id/faqId"
-            android:icon="@drawable/question"
-            android:title="FAQ" />
+              android:title="FAQ" />
         <item
             android:id="@+id/LogoutId"
-            android:icon="@drawable/exit"
             android:title="Logout" />
     </group>
 
