@@ -3,40 +3,36 @@ package com.example.valuationreport;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
-    private FirebaseAnalytics mFirebaseAnalytics;
+    EditText emailIdEditText, passwordEditText;
     Button loginBtn;
     Spinner dropdownLogin;
     String[] items;
-    private FirebaseAuth mAuth;
+    String email, password;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mAuth = FirebaseAuth.getInstance();
+
 
         typeCastLogin();       //function containing id's for all elements
 
+        getDataFromFirebase();
 
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //  updateUI(currentUser);
     }
 
     public void typeCastLogin() {
@@ -45,13 +41,42 @@ public class LoginActivity extends AppCompatActivity {
         items = new String[]{"Client", "Employee"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdownLogin.setAdapter(adapter);
+        emailIdEditText = findViewById(R.id.loginEmailId);
+        passwordEditText = findViewById(R.id.loginPasswordId);
+
+    }
+
+
+    public void getDataFromFirebase() {
+        try {
+            FirebaseApp.initializeApp(this);    //initialize firebase
+            db = FirebaseFirestore.getInstance();  //firestore object
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Probleem in Object---->" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d("FIRESTORE", e.getMessage());
+        }
+// get data from firestore
 
 
     }
 
     public void OnLoginButtonClick(View view) {
-        final Intent iLoginButton = new Intent(LoginActivity.this, DashBoard.class);
-        startActivity(iLoginButton);
+        email = emailIdEditText.getText().toString();
+        password = passwordEditText.getText().toString();
+
+
+        if (dropdownLogin.getSelectedItem().toString() == "Employee") {
+            try {
+                final Intent iLoginEmployeeButton = new Intent(LoginActivity.this, Dashboard.class);
+                startActivity(iLoginEmployeeButton);
+            } catch (Exception e) {
+                System.out.print("----------------------------" + e.getMessage() + "-------------------------------------");
+            }
+        } else if (dropdownLogin.getSelectedItem().toString() == "Client") {
+            final Intent iLoginButton = new Intent(LoginActivity.this, ClientLogin.class);
+            startActivity(iLoginButton);
+        }
+
     }
 
     public void OnRegisterTextClick(View view) {
@@ -59,5 +84,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(iRegisterButton);
 
     }
+
 
 }

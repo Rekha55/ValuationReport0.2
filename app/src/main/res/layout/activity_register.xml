@@ -110,7 +110,7 @@
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:inputType="number"
+        android:inputType="text"
 
         android:hint="Enter Company Code .."
         app:layout_constraintBottom_toBottomOf="parent"

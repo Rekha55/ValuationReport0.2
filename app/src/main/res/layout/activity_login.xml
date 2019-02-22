@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -20,34 +19,37 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <Spinner
         android:id="@+id/loginSpinnerId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="752dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
+        android:tooltipText="@android:string/selectTextMode"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.163"
         tools:layout_editor_absoluteX="0dp"></Spinner>
 
 
     <EditText
         android:id="@+id/loginEmailId"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="43dp"
         android:layout_marginTop="8dp"
 
         android:layout_marginBottom="8dp"
         android:hint="Enter Email Id.."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.305"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.313"
+        tools:layout_editor_absoluteX="53dp" />
 
     <EditText
         android:id="@+id/loginPasswordId"

@@ -60,7 +60,7 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Probleem in Object--------------->" + e.getMessage(), Toast.LENGTH_LONG).show();
             Log.d("FIRESTORE", e.getMessage());
         }
-
+// get data from firestore
 
         db.collection("users")
                 .get()
@@ -116,7 +116,7 @@ public class Registration extends AppCompatActivity {
     public void OnRegisterButtonClick(View view) {
 
         name = nameEditText.getText().toString();
-        email = nameEditText.getText().toString();
+        email = emailEditText.getText().toString();
         password = passwordEditText.getText().toString();
         address = addressEditText.getText().toString();
         mobileNo = mobileEditText.getText().toString();
@@ -185,14 +185,16 @@ public class Registration extends AppCompatActivity {
     }
 
     private boolean hasValidationErrors(String name, String email, String password, String mobile, String address) {
-        if (name.isEmpty() && !name.matches("^[\\p{L} .'-]+$")) {
-            nameEditText.setError("Name required");
+
+
+        if (name.length() < 8 && !name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)+$")) {
+            nameEditText.setError("Name required of atleast 10 Letter");
             nameEditText.requestFocus();
             return true;
         }
 
-        if (email.isEmpty() && !email.matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
-            emailEditText.setError("xyz@gmail.com");
+        if (email.isEmpty() && !email.matches("^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
+            emailEditText.setError("format for email : xyz@gmail.com");
             emailEditText.requestFocus();
             return true;
         }
@@ -213,6 +215,13 @@ public class Registration extends AppCompatActivity {
             addressEditText.setError("Address required");
             addressEditText.requestFocus();
             return true;
+        }
+        if (dropdownRegistration.getSelectedItem() == "Client") {
+            if (companyCode.length() < 0) {
+                companyCodeEditText.setError("company code required");
+                companyCodeEditText.requestFocus();
+                return true;
+            }
         }
 
         return false;
