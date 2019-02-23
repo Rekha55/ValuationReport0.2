@@ -28,6 +28,8 @@ public class Dashboard extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final Intent iInspection = new Intent(Dashboard.this, NewInspection.class);
+                startActivity(iInspection);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

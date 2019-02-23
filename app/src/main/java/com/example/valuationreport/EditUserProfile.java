@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class UserProfile extends AppCompatActivity {
+public class EditUserProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_edit_user_profile);
     }
 
-    public void OnDisplayProfile(View view) {
-        final Intent i_display_profile = new Intent(UserProfile.this, EditUserProfile.class);
-        startActivity(i_display_profile);
+    public void OnSubmitClick(View view) {
+        final Intent i_edit_profile = new Intent(EditUserProfile.this, UserProfile.class);
+        startActivity(i_edit_profile);
     }
 }

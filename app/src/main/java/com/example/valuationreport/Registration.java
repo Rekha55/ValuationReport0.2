@@ -129,7 +129,7 @@ public class Registration extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), companyCodeEditText.getText().toString() + "", Toast.LENGTH_SHORT).show();   //for checking company code input
 
 
-        if (!hasValidationErrors(name, email, password, mobileNo, address)) {
+        if (hasValidation(name, email, password, mobileNo, address)) {
 
 
             boolean auth = false;
@@ -184,34 +184,34 @@ public class Registration extends AppCompatActivity {
         return companyCode;
     }
 
-    private boolean hasValidationErrors(String name, String email, String password, String mobile, String address) {
+    private boolean hasValidation(String name, String email, String password, String mobile, String address) {
 
 
-        if (name.length() < 8 && !name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)+$")) {
+        if (name.length() > 8 && name.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)+$")) {
             nameEditText.setError("Name required of atleast 10 Letter");
             nameEditText.requestFocus();
             return true;
         }
 
-        if (email.isEmpty() && !email.matches("^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
+        if (!email.isEmpty() && email.matches("^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$")) {
             emailEditText.setError("format for email : xyz@gmail.com");
             emailEditText.requestFocus();
             return true;
         }
 
-        if (password.isEmpty() && !password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$") && password.length() < 8) {
+        if (!password.isEmpty() && password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$") && password.length() < 8) {
             passwordEditText.setError("Password required with alteast 1number ,one capital letter and 1 alphanumeric letter");
             passwordEditText.requestFocus();
             return true;
         }
 
-        if (mobile.isEmpty() && !mobileNo.matches("^[0-9]{10}")) {
+        if (!mobile.isEmpty() && !mobileNo.matches("^[0-9]{10}")) {
             mobileEditText.setError("please enter 10 number");
             mobileEditText.requestFocus();
             return true;
         }
 
-        if (address.isEmpty()) {
+        if (!address.isEmpty()) {
             addressEditText.setError("Address required");
             addressEditText.requestFocus();
             return true;

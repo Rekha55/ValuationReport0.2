@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfile">
+    tools:context=".EditUserProfile">
 
     <Button
-        android:id="@+id/display_profileButtonId"
+        android:id="@+id/editProfileSubmitId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="OnDisplayProfile"
-        android:text="Edit"
+        android:onClick="OnSubmitClick"
+        android:text="Submit"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="279dp" />
+        tools:layout_editor_absoluteY="243dp" />
 </android.support.constraint.ConstraintLayout>
