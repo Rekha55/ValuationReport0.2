@@ -7,20 +7,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/authId"
-            android:icon="@drawable/ic_action_auth"
+            android:icon="@drawable/auth"
             android:title="Authentication" />
         <item
             android:id="@+id/ctbId"
-            android:icon="@drawable/ic_action_moneybag"
+            android:icon="@drawable/moneybag"
             android:title="Cost_to_the_bidder" />
 
         <item
             android:id="@+id/matrixId"
-            android:icon="@drawable/ic_action_matrix"
+            android:icon="@drawable/matrix"
             android:title="Matrix" />
         <item
             android:id="@+id/userProfileId"
-            android:icon="@drawable/ic_action_user"
+            android:icon="@drawable/userp"
             android:title="User Profile" />
 
         <item
@@ -29,11 +29,11 @@
             android:title="Settings" />
         <item
             android:id="@+id/faqId"
-            android:icon="@drawable/ic_action_faq"
+            android:icon="@drawable/question"
             android:title="FAQ" />
         <item
             android:id="@+id/LogoutId"
-            android:icon="@drawable/common_full_open_on_phone"
+            android:icon="@drawable/exit"
             android:title="Logout" />
     </group>
 
