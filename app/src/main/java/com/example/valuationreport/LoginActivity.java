@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     Spinner dropdownLogin;
     String[] items;
     String email, password;
+    boolean validate;
     private FirebaseFirestore db;
 
     @Override
@@ -69,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
         email = emailIdEditText.getText().toString();
         password = passwordEditText.getText().toString();
 
-
+        validate=false;
         if (dropdownLogin.getSelectedItem().toString() == "Employee") {
             try {
 
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 final DocumentReference userRef = db.collection("users").document(email);
 
                 userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -86,15 +87,30 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                             if (document != null) {
-                                if(dropdownLogin.getSelectedItem().equals("Employee")) {
-                                    final Intent iLoginEmployeeButton = new Intent(LoginActivity.this, Dashboard.class);
-                                    startActivity(iLoginEmployeeButton);
-                                }else if (dropdownLogin.getSelectedItem().toString() == "Client") {
+                                final DocumentReference passref =db.collection("users").document(password);
+                                passref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
+                                        if (task1.isSuccessful()) {
+                                            DocumentSnapshot document = task1.getResult();
 
-                                    final Intent iLoginButton = new Intent(LoginActivity.this, ClientLogin.class);
-                                    startActivity(iLoginButton);
-                                }
+                                            Toast.makeText(LoginActivity.this, task1.getResult().toString(),
+                                                    Toast.LENGTH_SHORT).show();
 
+                                            if (document != null) {
+
+                                                if(dropdownLogin.getSelectedItem().equals("Employee")) {
+                                                    final Intent iLoginEmployeeButton = new Intent(LoginActivity.this, Dashboard.class);
+                                                    startActivity(iLoginEmployeeButton);
+                                                }else if (dropdownLogin.getSelectedItem().toString() == "Client") {
+
+                                                    final Intent iLoginButton = new Intent(LoginActivity.this, ClientLogin.class);
+                                                    startActivity(iLoginButton);
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
                             }
 
 
@@ -110,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
 
     public void OnRegisterTextClick(View view) {
         final Intent iRegisterButton = new Intent(LoginActivity.this, Registration.class);
