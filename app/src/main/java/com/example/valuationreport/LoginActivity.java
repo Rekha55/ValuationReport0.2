@@ -2,6 +2,7 @@ package com.example.valuationreport;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
@@ -67,16 +72,43 @@ public class LoginActivity extends AppCompatActivity {
 
         if (dropdownLogin.getSelectedItem().toString() == "Employee") {
             try {
-                final Intent iLoginEmployeeButton = new Intent(LoginActivity.this, Dashboard.class);
-                startActivity(iLoginEmployeeButton);
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                final DocumentReference userRef = db.collection("users").document(email);
+
+                userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+
+                            Toast.makeText(LoginActivity.this, task.getResult().toString(),
+                                    Toast.LENGTH_SHORT).show();
+
+                            if (document != null) {
+                                if(dropdownLogin.getSelectedItem().equals("Employee")) {
+                                    final Intent iLoginEmployeeButton = new Intent(LoginActivity.this, Dashboard.class);
+                                    startActivity(iLoginEmployeeButton);
+                                }else if (dropdownLogin.getSelectedItem().toString() == "Client") {
+
+                                    final Intent iLoginButton = new Intent(LoginActivity.this, ClientLogin.class);
+                                    startActivity(iLoginButton);
+                                }
+
+                            }
+
+
+                        }
+                    }
+
+
+                });
+
+
             } catch (Exception e) {
                 System.out.print("----------------------------" + e.getMessage() + "-------------------------------------");
             }
-        } else if (dropdownLogin.getSelectedItem().toString() == "Client") {
-            final Intent iLoginButton = new Intent(LoginActivity.this, ClientLogin.class);
-            startActivity(iLoginButton);
         }
-
     }
 
     public void OnRegisterTextClick(View view) {
