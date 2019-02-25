@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             try {
 
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                final DocumentReference userRef = db.collection("users").document(email);
+                final DocumentReference userRef = db.collection("users").document(email);    //verify using email
 
                 userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                             if (document != null) {
-                                final DocumentReference passref =db.collection("users").document(password);
+                                final DocumentReference passref =db.collection("users").document(password);        //verify using password
                                 passref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
