@@ -94,7 +94,6 @@ public class Dashboard extends AppCompatActivity
             startActivity(iMatrixIntent);
         } else if (id == R.id.userProfileId) {
             final Intent iUserProfile = new Intent(Dashboard.this, UserProfile.class);
-            startActivity(iUserProfile);
         } else if (id == R.id.faqId) {
             final Intent iFAQIntent = new Intent(Dashboard.this, FAQ.class);
             startActivity(iFAQIntent);

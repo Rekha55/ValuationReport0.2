@@ -30,36 +30,36 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        super.onCreate (savedInstanceState);
+        setContentView (R.layout.activity_login);
 
 
-        typeCastLogin();       //function containing id's for all elements
+        typeCastLogin ();       //function containing id's for all elements
 
-        getDataFromFirebase();
+        getDataFromFirebase ();
 
 
     }
 
     public void typeCastLogin() {
-        loginBtn = findViewById(R.id.loginLoggedInId);
-        dropdownLogin = findViewById(R.id.loginSpinnerId);
+        loginBtn = findViewById (R.id.loginLoggedInId);
+        dropdownLogin = findViewById (R.id.loginSpinnerId);
         items = new String[]{"Client", "Employee"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdownLogin.setAdapter(adapter);
-        emailIdEditText = findViewById(R.id.loginEmailId);
-        passwordEditText = findViewById(R.id.loginPasswordId);
+        ArrayAdapter<String> adapter = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, items);
+        dropdownLogin.setAdapter (adapter);
+        emailIdEditText = findViewById (R.id.loginEmailId);
+        passwordEditText = findViewById (R.id.loginPasswordId);
 
     }
 
 
     public void getDataFromFirebase() {
         try {
-            FirebaseApp.initializeApp(this);    //initialize firebase
-            db = FirebaseFirestore.getInstance();  //firestore object
+            FirebaseApp.initializeApp (this);    //initialize firebase
+            db = FirebaseFirestore.getInstance ();  //firestore object
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Probleem in Object---->" + e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.d("FIRESTORE", e.getMessage());
+            Toast.makeText (getApplicationContext (), "Probleem in Object---->" + e.getMessage (), Toast.LENGTH_LONG).show ();
+            Log.d ("FIRESTORE", e.getMessage ());
         }
 // get data from firestore
 
@@ -67,73 +67,71 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void OnLoginButtonClick(View view) {
-        email = emailIdEditText.getText().toString();
-        password = passwordEditText.getText().toString();
+        email = emailIdEditText.getText ().toString ();
+        password = passwordEditText.getText ().toString ();
 
-        validate=false;
-        if (dropdownLogin.getSelectedItem().toString() == "Employee") {
-            try {
+        validate = false;
 
-                final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                final DocumentReference userRef = db.collection("users").document(email);    //verify using email
+        try {
 
-                userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
+            final FirebaseFirestore db = FirebaseFirestore.getInstance ();
+            final DocumentReference userRef = db.collection ("users").document (email);    //verify using email
 
-                            Toast.makeText(LoginActivity.this, task.getResult().toString(),
-                                    Toast.LENGTH_SHORT).show();
+            userRef.get ().addOnCompleteListener (new OnCompleteListener<DocumentSnapshot> () {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful ()) {
+                        DocumentSnapshot document = task.getResult ();
 
-                            if (document != null) {
-                                final DocumentReference passref =db.collection("users").document(password);        //verify using password
-                                passref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
-                                        if (task1.isSuccessful()) {
-                                            DocumentSnapshot document = task1.getResult();
+                        Toast.makeText (LoginActivity.this, task.getResult ().toString (),
+                                Toast.LENGTH_SHORT).show ();
 
-                                            Toast.makeText(LoginActivity.this, task1.getResult().toString(),
-                                                    Toast.LENGTH_SHORT).show();
+                        if (document != null) {
+                            final DocumentReference passref = db.collection ("users").document (password);        //verify using password
+                            passref.get ().addOnCompleteListener (new OnCompleteListener<DocumentSnapshot> () {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
+                                    if (task1.isSuccessful ()) {
+                                        DocumentSnapshot document = task1.getResult ();
 
-                                            if (document != null) {
+                                        Toast.makeText (LoginActivity.this, task1.getResult ().toString (),
+                                                Toast.LENGTH_SHORT).show ();
 
-                                                if(dropdownLogin.getSelectedItem().equals("Employee")) {
-                                                    final Intent iLoginEmployeeButton = new Intent(LoginActivity.this, Dashboard.class);
-                                                    startActivity(iLoginEmployeeButton);
-                                                }else if (dropdownLogin.getSelectedItem().toString() == "Client") {
+                                        if (document != null) {
 
-                                                    final Intent iLoginButton = new Intent(LoginActivity.this, ClientLogin.class);
-                                                    startActivity(iLoginButton);
-                                                }
+                                            if (dropdownLogin.getSelectedItem ().equals ("Employee")) {
+                                                final Intent iLoginEmployeeButton = new Intent (LoginActivity.this, Dashboard.class);
+                                                startActivity (iLoginEmployeeButton);
+                                            } else if (dropdownLogin.getSelectedItem ().toString () == "Client") {
+
+                                                final Intent iLoginButton = new Intent (LoginActivity.this, ClientLogin.class);
+                                                startActivity (iLoginButton);
                                             }
                                         }
                                     }
-                                });
-                            }
-
-
+                                }
+                            });
                         }
+
+
                     }
+                }
 
 
-                });
+            });
 
 
-            } catch (Exception e) {
-                System.out.print("----------------------------" + e.getMessage() + "-------------------------------------");
-            }
+        } catch (Exception e) {
+            System.out.print ("----------------------------" + e.getMessage () + "-------------------------------------");
         }
     }
 
 
     public void OnRegisterTextClick(View view) {
-        final Intent iRegisterButton = new Intent(LoginActivity.this, Registration.class);
-        startActivity(iRegisterButton);
+        final Intent iRegisterButton = new Intent (LoginActivity.this, Registration.class);
+        startActivity (iRegisterButton);
 
     }
-    //change
 
 
 }

@@ -155,8 +155,6 @@ public class Registration extends AppCompatActivity {
             });
             final Intent iRegisterButton = new Intent(Registration.this, LoginActivity.class);
             startActivity(iRegisterButton);
-        } else {
-            Toast.makeText(getApplicationContext(), "Inputs are not Valid", Toast.LENGTH_SHORT).show();   //for checking company code input
         }
 
 
