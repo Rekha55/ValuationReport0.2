@@ -81,10 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful ()) {
-                        DocumentSnapshot document = task.getResult ();
+                        final DocumentSnapshot document = task.getResult ();
 
-                        Toast.makeText (LoginActivity.this, task.getResult ().toString (),
-                                Toast.LENGTH_SHORT).show ();
 
                         if (document != null) {
                             final DocumentReference passref = db.collection ("users").document (password);        //verify using password
@@ -92,20 +90,25 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
                                     if (task1.isSuccessful ()) {
-                                        DocumentSnapshot document = task1.getResult ();
+                                        DocumentSnapshot document1 = task1.getResult ();
 
-                                        Toast.makeText (LoginActivity.this, task1.getResult ().toString (),
-                                                Toast.LENGTH_SHORT).show ();
 
                                         if (document != null) {
 
                                             if (dropdownLogin.getSelectedItem ().equals ("Employee")) {
                                                 final Intent iLoginEmployeeButton = new Intent (LoginActivity.this, Dashboard.class);
                                                 startActivity (iLoginEmployeeButton);
+                                                Toast.makeText (LoginActivity.this,document.getData ().toString ()+document1.getData ().toString (),
+                                                        Toast.LENGTH_SHORT).show ();
+
+
                                             } else if (dropdownLogin.getSelectedItem ().toString () == "Client") {
 
                                                 final Intent iLoginButton = new Intent (LoginActivity.this, ClientLogin.class);
                                                 startActivity (iLoginButton);
+                                                Toast.makeText (LoginActivity.this,document.getData ().toString ()+document1.getData ().toString (),
+                                                        Toast.LENGTH_SHORT).show ();
+
                                             }
                                         }
                                     }
